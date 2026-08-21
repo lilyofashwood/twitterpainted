@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="twitterpainted — a local, browser-only twitterpaint encoder and decoder">
+  <meta name="theme-color" content="#050304">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' blob: data:; style-src 'self'; script-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>𓂀 𓄤 🖤 𝗍𝗐𝐢𝗍𝗍𝐞𝗋𝗉𝐚𝐢𝗇𝗍𝐞𝖽 🖤 𓋹</title>
+  <link rel="stylesheet" href="./twitterpainted.css">
+  <script type="module" src="./twitterpainted.js?v=20260821-legacy-alpha-receipt"></script>
+</head>
+<body>
+  <div class="bg-accent" aria-hidden="true"></div>
+
+  <header class="site-header shell">
+    <div class="title-lockup">
+      <h1>
+        <span class="title-glyphs" aria-hidden="true">𓂀 𓄤 𓆣</span>
+        <span class="glow-word" data-glow="𝗍𝗐𝐢𝗍𝗍𝐞𝗋𝗉𝐚𝐢𝗇𝗍𝐞𝖽">twitterpainted</span>
+        <span class="title-spark" aria-hidden="true">🖤 𓋹 𓂀</span>
+      </h1>
+      <div class="lede-box">
+        <p class="lede-text">𓂀 follow the 🗝️ melody 🗝️. find the lyric. 🔓 🖤 𓋹</p>
+        <p class="lede-mini">𓂀 twitterpaint · combined rgb or individual r / g / b · text only 𓋹</p>
+        <div class="survival-spell" aria-label="twitterpaint survival spell">
+          <p class="survival-declaration">twitterpaint survives the x / twitter algorithm, unlike my heart did.</p>
+          <ul class="survival-runes">
+            <li>𓂀 combined rgb · one secret</li>
+            <li>𓆣 individual r / g / b · separate secrets</li>
+            <li>𓋹 opaque rgb png · every bit intact</li>
+          </ul>
+          <p class="survival-route">680 px max · below 900 kib · 257+ rgb colors · verified before download · post it · download twitter's copy · decode it again · the spell holds</p>
+          <p class="survival-lore"><span aria-hidden="true">🖤</span> stolen proudly from pliny's agpl grimoire · all is fair in love and war · the code kept its promise longer</p>
+        </div>
+        <p class="privacy-note"><span aria-hidden="true">✦</span> nothing leaves this browser. the carrier, hidden text, painting, and decoding all stay local.</p>
+      </div>
+    </div>
+    <nav class="header-links" aria-label="project links">
+      <a href="https://twitterpainted.onrender.com">open the full forensic lab</a>
+      <a href="https://github.com/lilyofashwood/twitterpainted">source + docker</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section class="mode-switch" aria-label="demo mode">
+      <button class="mode-btn active" type="button" data-target="encode-panel" aria-controls="encode-panel" aria-selected="true">encoder</button>
+      <button class="mode-btn" type="button" data-target="decode-panel" aria-controls="decode-panel" aria-selected="false">decoder</button>
+    </section>
+
+    <section id="encode-panel" class="panel active" aria-labelledby="encode-heading">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">twitterpaint · encode</p>
+          <h2 id="encode-heading">hide a love letter in the pixels (🖤𓂀)</h2>
+        </div>
+        <p class="note">paint one letter through combined rgb, or give the individual red, green, and blue planes separate confessions. the demo hides text only and always returns png.</p>
+      </div>
+
+      <form id="encode-form" class="form-grid" novalidate>
+        <section class="field carrier-field">
+          <span class="field-label">carrier image</span>
+          <div class="file-control">
+            <input type="file" id="carrier-input" accept="image/*" aria-label="choose source image">
+            <label for="carrier-input" class="file-button">choose photo</label>
+            <span id="carrier-name" class="file-name">no photo chosen</span>
+          </div>
+          <p class="input-hint">png or jpeg source · up to 8 mb · the new file strips source metadata</p>
+          <div id="carrier-stats" class="stat-row" aria-live="polite"></div>
+        </section>
+
+        <section class="field method-field">
+          <span class="field-label">twitterpaint style</span>
+          <fieldset class="paint-style-toggle">
+            <legend class="sr-only">twitterpaint style</legend>
+            <label class="inline"><input type="radio" name="paint-style" value="combined" checked><span>combined rgb</span></label>
+            <label class="inline"><input type="radio" name="paint-style" value="individual"><span>individual r / g / b</span></label>
+          </fieldset>
+
+          <div class="format-lock" aria-label="output format png">
+            <span aria-hidden="true">◆</span><span>output · png</span>
+          </div>
+          <div class="format-lock" aria-label="twitter safe profile locked">
+            <span aria-hidden="true">𓂀</span><span>twitter profile · 680 px max · below 900 kib · 257+ rgb colors</span>
+          </div>
+          <p class="input-hint">always on: opaque rgb png, source metadata stripped, and exact payload reopened before download. exports that resolve to 256 colors or fewer are refused so twitter cannot collapse the image into a palette.</p>
+        </section>
+
+        <section id="combined-options" class="method-options">
+          <div class="field combined-controls">
+            <div class="channel-head">
+              <span class="field-label">combined rgb</span>
+              <span class="channel-sigil" aria-hidden="true">𓂀 🖤 𓋹</span>
+            </div>
+            <label class="text-wrap" for="combined-text">
+              <span>hidden text</span>
+              <textarea id="combined-text" rows="7" spellcheck="true" placeholder="𓂀 write what the feed cannot kill 🖤"></textarea>
+            </label>
+            <p id="combined-capacity" class="capacity-line">choose a carrier to reveal capacity</p>
+          </div>
+        </section>
+
+        <section id="individual-options" class="method-options hidden">
+          <div class="individual-intro">
+            <p class="field-label">individual rgb planes</p>
+            <p class="input-hint">enable any red, green, or blue plane. each selected color carries its own independent text.</p>
+          </div>
+          <div class="channel-grid">
+            <article class="channel-card" data-channel="R">
+              <div class="channel-head"><label class="inline"><input class="channel-enabled" type="checkbox" checked><span>r · red</span></label><span class="channel-sigil" aria-hidden="true">𓂀</span></div>
+              <textarea class="channel-text" rows="5" spellcheck="true" aria-label="hidden text for red plane" placeholder="𓋹 red remembers the wound"></textarea>
+              <p class="channel-capacity capacity-line">choose a carrier to reveal capacity</p>
+            </article>
+            <article class="channel-card" data-channel="G">
+              <div class="channel-head"><label class="inline"><input class="channel-enabled" type="checkbox"><span>g · green</span></label><span class="channel-sigil" aria-hidden="true">𓆣</span></div>
+              <textarea class="channel-text" rows="5" spellcheck="true" aria-label="hidden text for green plane" placeholder="𓆣 green keeps the alibi"></textarea>
+              <p class="channel-capacity capacity-line">choose a carrier to reveal capacity</p>
+            </article>
+            <article class="channel-card" data-channel="B">
+              <div class="channel-head"><label class="inline"><input class="channel-enabled" type="checkbox"><span>b · blue</span></label><span class="channel-sigil" aria-hidden="true">𓋹</span></div>
+              <textarea class="channel-text" rows="5" spellcheck="true" aria-label="hidden text for blue plane" placeholder="𓄤 blue buries the confession"></textarea>
+              <p class="channel-capacity capacity-line">choose a carrier to reveal capacity</p>
+            </article>
+          </div>
+        </section>
+
+        <div class="action-cell">
+          <button id="encode-button" class="primary-button" type="submit">paint the text</button>
+          <span class="local-chip">local only · no upload</span>
+        </div>
+      </form>
+
+      <div id="encode-status" class="status-box" aria-live="polite"></div>
+      <div id="encode-output" class="output-zone" aria-live="polite"></div>
+    </section>
+
+    <section id="decode-panel" class="panel" aria-labelledby="decode-heading">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">twitterpaint · decode</p>
+          <h2 id="decode-heading">ask the rgb planes what survived (𓂀🖤)</h2>
+        </div>
+        <p class="note">the decoder checks combined rgb and each individual r, g, and b plane for null-terminated utf-8 text, then reads legacy alpha carriers as a decoder-only fallback. try the exact image downloaded from x/twitter—not a screenshot or preview.</p>
+      </div>
+
+      <form id="decode-form" class="form-grid" novalidate>
+        <section class="field carrier-field">
+          <span class="field-label">painted carrier</span>
+          <div class="file-control">
+            <input type="file" id="decode-input" accept="image/*" aria-label="choose painted carrier">
+            <label for="decode-input" class="file-button">choose carrier</label>
+            <span id="decode-name" class="file-name">no carrier chosen</span>
+          </div>
+          <p class="input-hint">png or jpeg · the file stays in memory and is never transmitted</p>
+          <div id="decode-stats" class="stat-row" aria-live="polite"></div>
+        </section>
+
+        <section class="field decoder-contract">
+          <span class="field-label">decoder sweep</span>
+          <p class="input-hint">combined rgb · individual red · individual green · individual blue · legacy alpha read-only</p>
+          <p class="input-hint">each export gets a paint mark in its filename. the decoder repeats that mark and tells you whether the receipt matches your last local export.</p>
+          <p class="input-hint">jpeg is accepted so you can witness recompression damage. absence of a readable result is not proof that no hidden data exists.</p>
+        </section>
+
+        <div class="action-cell">
+          <button id="decode-button" class="primary-button" type="submit">read the pixels</button>
+          <span class="local-chip">local only · no upload</span>
+        </div>
+      </form>
+
+      <div id="decode-status" class="status-box" aria-live="polite"></div>
+      <div id="decode-output" class="output-zone" aria-live="polite"></div>
+    </section>
+
+    <aside class="full-lab-card">
+      <div>
+        <p class="eyebrow">the whole underworld</p>
+        <h2>this is only the pretty little knife.</h2>
+        <p>for the full forensic lab, decoder constellation, docker toolchain, artifacts, and stranger spells, open the hosted build or take the source home.</p>
+      </div>
+      <div class="cta-row">
+        <a class="primary-link" href="https://twitterpainted.onrender.com">enter the full lab</a>
+        <a class="secondary-link" href="https://github.com/lilyofashwood/twitterpainted/archive/refs/heads/main.zip">download the docker source</a>
+        <a class="secondary-link" href="https://github.com/lilyofashwood/twitterpainted">read the repository</a>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="shell site-footer">
+    <span aria-hidden="true">𓂀 𓋹 🖤 𓄤</span>
+    <span>browser-only demo · agpl-3.0 · no analytics, no tracking, no server upload</span>
+  </footer>
+
+  <canvas id="work-canvas" class="hidden" aria-hidden="true"></canvas>
+</body>
+</html>

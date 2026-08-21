@@ -1,0 +1,16 @@
+services:
+  web:
+    build: .
+    image: twitterpainted-web:dev
+    environment:
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+      - MAX_PENDING_TIME=180
+    command: flask --app app run --host 0.0.0.0 --port 5000 --debug
+    ports:
+      - "127.0.0.1:5050:5000"
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    security_opt:
+      - no-new-privileges:true
