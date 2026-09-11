@@ -765,3 +765,15 @@ window.addEventListener('pagehide', () => {
 stylizeStaticUi();
 syncPaintStyle();
 refreshCapacity();
+
+// Only explicit UI presets are accepted. Images, keys and payloads never come from a URL.
+const launcherPreset = new URLSearchParams(location.search);
+const requestedPaint = launcherPreset.get('paint');
+if (['combined', 'individual'].includes(requestedPaint)) {
+  document.querySelector(`input[name="paint-style"][value="${requestedPaint}"]`).checked = true;
+  syncPaintStyle();
+}
+const requestedPanel = launcherPreset.get('mode');
+if (['encode', 'decode'].includes(requestedPanel)) {
+  document.querySelector(`.mode-btn[data-target="${requestedPanel}-panel"]`)?.click();
+}
