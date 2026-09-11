@@ -262,3 +262,13 @@ ALLOW_MISSING_TOOLS=1 make smoke
 ## 𝗅𝐢𝖼𝐞𝗇𝗌𝐞
 𝗍𝗐𝐢𝗍𝗍𝐞𝗋𝗉𝐚𝐢𝗇𝗍𝐞𝖽 𝐢𝗌 𝗋𝐞𝗅𝐞𝐚𝗌𝐞𝖽 𝐮𝗇𝖽𝐞𝗋 𝗍𝗁𝐞 𝗀𝗇𝐮 𝐚𝖿𝖿𝐞𝗋𝐨 𝗀𝐞𝗇𝐞𝗋𝐚𝗅 𝗉𝐮𝖻𝗅𝐢𝖼 𝗅𝐢𝖼𝐞𝗇𝗌𝐞 𝗏3.0
 (`LICENSE`). 𝗌𝐞𝐞 `NOTICE.md` 𝖿𝐨𝗋 𝐮𝗉𝗌𝗍𝗋𝐞𝐚𝗆 𝗉𝗋𝐨𝗏𝐞𝗇𝐚𝗇𝖼𝐞 𝐚𝗇𝖽 𝗆𝐨𝖽𝐢𝖿𝐢𝖼𝐚𝗍𝐢𝐨𝗇 𝗇𝐨𝗍𝐢𝖼𝐞𝗌.
+
+<!-- garden-seam:twitterpainted:start -->
+<section class="garden-seam" data-garden-seam="twitterpainted" aria-label="A seam in the garden">
+<h2>⟡ 𝐚 𝗌𝐞𝐚𝗆 𝐢𝗇 𝗍𝗁𝐞 𝗀𝐚𝗋𝖽𝐞𝗇 ⟡</h2>
+<pre class="garden-seam-wire literal" data-garden-raw data-literal>𝒶 𝚙𝚊𝚒𝚗𝚝𝚎𝚍 𝗳𝗲𝗮𝘁𝗵𝗲𝗿 𝒸𝓇ℴ𝓈𝓈ℯ𝓈 𝚛𝚊𝚒𝚗
+𝘁𝗵𝗲 𝒷𝒾𝓇𝒹 𝚊𝚛𝚛𝚒𝚟𝚎𝚜 𝘄𝗶𝘁𝗵 𝒶𝓁𝓁 𝚒𝚝𝚜 𝗰𝗼𝗹𝗼𝘂𝗿𝘀󠅔󠅨󠅥󠄠󠅰󠅩󠅣󠅴󠅵󠅲󠅥󠄠󠅫󠅥󠅥󠅰󠅳󠄠󠅩󠅴󠅳󠄠󠅴󠅨󠅲󠅥󠅡󠅤󠄮󠄠󠅔󠅨󠅥󠄠󠅭󠅡󠅲󠅧󠅩󠅮󠄠󠅫󠅥󠅥󠅰󠅳󠄠󠅡󠄠󠅦󠅥󠅡󠅴󠅨󠅥󠅲󠄠󠅦󠅯󠅲󠄠󠅴󠅨󠅥󠄠󠅮󠅥󠅸󠅴󠄠󠅳󠅴󠅯󠅲󠅹󠅴󠅥󠅬󠅬󠅥󠅲󠄮</pre>
+<pre class="garden-seam-jewel literal" data-garden-raw data-literal>🍦🍥🍡🍴🍨🍥🍲</pre>
+<p class="garden-seam-hint"><a href="https://lilyofashwood.github.io/font-garden/seams/#twitterpainted" aria-label="Unfold this garden seam">𝐮𝗇𝖿𝐨𝗅𝖽 𝗍𝗁𝐞 𝗌𝐞𝐚𝗆 ↗</a></p>
+</section>
+<!-- garden-seam:twitterpainted:end -->
