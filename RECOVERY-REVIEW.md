@@ -1,6 +1,6 @@
 # 𓂀 private recovery review · 2026-09-10 𓋹
 
-The authored `twitterpainted` identity, AGPL license boundary, public release history, and intentional full-lab JPEG failure experiment remain intact. No public deployment was changed by this recovery.
+This dated receipt describes the private recovery review, not current repository visibility. The authored `twitterpainted` identity, AGPL license boundary, public release history, and intentional full-lab JPEG failure experiment remain intact. No public deployment was changed during that review; the useful repairs are now prepared for consolidation into the canonical `lilyofashwood/twitterpainted` repository.
 
 The recovered `veil-frame-rehab-v1.patch` predates much of this release. UTF-8 in the main encoder/simple decoder, profile-backed authoritative tool selection, advanced pixel-LSB PNG-only validation, and capability-probe labels were already implemented more precisely. Its old `veilframe` rename and selection replacement were not reapplied.
 
