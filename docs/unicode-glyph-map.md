@@ -10,27 +10,27 @@ Defined in `static/app.js` as `unicode_lower` and applied via `stylizeUi()`.
 
 | ASCII | Unicode       | Codepoint | Block                              |
 |-------|---------------|-----------|-------------------------------------|
-| a     | 𝐚            | U+1D41A   | Mathematical Sans-Serif Bold        |
+| a     | 𝐚            | U+1D41A   | Mathematical Bold                  |
 | b     | 𝖻            | U+1D5BB   | Mathematical Sans-Serif             |
 | c     | 𝖼            | U+1D5BC   | Mathematical Sans-Serif             |
 | d     | 𝖽            | U+1D5BD   | Mathematical Sans-Serif             |
-| e     | 𝐞            | U+1D41E   | Mathematical Sans-Serif Bold        |
+| e     | 𝐞            | U+1D41E   | Mathematical Bold                  |
 | f     | 𝖿            | U+1D5BF   | Mathematical Sans-Serif             |
 | g     | 𝗀            | U+1D5C0   | Mathematical Sans-Serif             |
 | h     | 𝗁            | U+1D5C1   | Mathematical Sans-Serif             |
-| i     | 𝐢            | U+1D422   | Mathematical Sans-Serif Bold        |
+| i     | 𝐢            | U+1D422   | Mathematical Bold                  |
 | j     | 𝗃            | U+1D5C3   | Mathematical Sans-Serif             |
 | k     | 𝗄            | U+1D5C4   | Mathematical Sans-Serif             |
 | l     | 𝗅            | U+1D5C5   | Mathematical Sans-Serif             |
 | m     | 𝗆            | U+1D5C6   | Mathematical Sans-Serif             |
 | n     | 𝗇            | U+1D5C7   | Mathematical Sans-Serif             |
-| o     | 𝐨            | U+1D428   | Mathematical Sans-Serif Bold        |
+| o     | 𝐨            | U+1D428   | Mathematical Bold                  |
 | p     | 𝗉            | U+1D5C9   | Mathematical Sans-Serif             |
 | q     | 𝗊            | U+1D5CA   | Mathematical Sans-Serif             |
 | r     | 𝗋            | U+1D5CB   | Mathematical Sans-Serif             |
 | s     | 𝗌            | U+1D5CC   | Mathematical Sans-Serif             |
 | t     | 𝗍            | U+1D5CD   | Mathematical Sans-Serif             |
-| u     | 𝐮            | U+1D42E   | Mathematical Sans-Serif Bold        |
+| u     | 𝐮            | U+1D42E   | Mathematical Bold                  |
 | v     | 𝗏            | U+1D5CF   | Mathematical Sans-Serif             |
 | w     | 𝗐            | U+1D5D0   | Mathematical Sans-Serif             |
 | x     | 𝗑            | U+1D5D1   | Mathematical Sans-Serif             |

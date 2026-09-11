@@ -14,6 +14,15 @@ class ReadmeClueContracts(unittest.TestCase):
         self.assertNotIn("melody", opening)
         self.assertTrue(lines[2].startswith("𓂀 "))
 
+    def test_default_twitter_route_is_named_before_the_lab_details(self):
+        readme = unicodedata.normalize("NFKC", (Path(__file__).resolve().parents[1] / "README.md").read_text(encoding="utf-8")).lower()
+        opening = readme.split("## carrier prep grimoire", 1)[0]
+        self.assertIn("survives x / twitter with its default feed-armor png settings", opening)
+        self.assertIn("download twitter’s original", opening)
+        self.assertIn("the quick demo locks this profile on", opening)
+        self.assertIn("257+ colors", opening)
+        self.assertIn("separate jpeg experiments", opening)
+
 
 if __name__ == "__main__":
     unittest.main()

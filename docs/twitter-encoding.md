@@ -1,93 +1,74 @@
-# 𓂀 🖤 compression spell 🖤 𓋹
+# 𓂀 🖤 𝖼𝐨𝗆𝗉𝗋𝐞𝗌𝗌𝐢𝐨𝗇 𝗌𝗉𝐞𝗅𝗅 🖤 𓋹
 
-Twitterpainted has several different carrier paths. They solve different
-problems and should not share one promise.
+𝗍𝗐𝐢𝗍𝗍𝐞𝗋𝗉𝐚𝐢𝗇𝗍 𝗌𝐮𝗋𝗏𝐢𝗏𝐞𝗌 𝗑 / 𝗍𝗐𝐢𝗍𝗍𝐞𝗋 𝗐𝐢𝗍𝗁 𝐢𝗍𝗌 𝖽𝐞𝖿𝐚𝐮𝗅𝗍 𝖿𝐞𝐞𝖽-𝐚𝗋𝗆𝐨𝗋 𝗉𝗇𝗀 𝗌𝐞𝗍𝗍𝐢𝗇𝗀𝗌.
+𝗍𝗁𝐞 𝗅𝐞𝗍𝗍𝐞𝗋 𝗅𝐢𝗏𝐞𝗌 𝐢𝗇 𝗍𝗁𝐞 𝗉𝐢𝗑𝐞𝗅𝗌; 𝗍𝗁𝐞 𝐨𝗋𝐢𝗀𝐢𝗇𝐚𝗅 𝗉𝗇𝗀 𝗄𝐞𝐞𝗉𝗌 𝗍𝗁𝐞𝗆 𝐢𝗇𝗍𝐚𝖼𝗍.
 
-## twitterpaint: pixel lsb + png
+## 𝗍𝗁𝐞 𝖽𝐞𝖿𝐚𝐮𝗅𝗍 𝗍𝗐𝐢𝗍𝗍𝐞𝗋 𝗋𝐨𝐮𝗍𝐞
 
-`twitterpaint` wraps combined-RGB `simple_lsb` and separate R/G/B
-`advanced_lsb` behind one mutually exclusive, text-only mode. Alpha and file
-payloads are excluded. Its source carrier may be PNG or JPEG, because the app
-first decodes the source into pixels. PNG is the lossless output default.
+𝖼𝗁𝐨𝐨𝗌𝐞 `twitterpaint` 𝐞𝗇𝖼𝐨𝖽𝐢𝗇𝗀 𝗐𝐢𝗍𝗁 `twitterpaint` 𝖼𝐚𝗋𝗋𝐢𝐞𝗋 𝗉𝗋𝐞𝗉. 𝖻𝐨𝗍𝗁 𝐚𝗋𝐞
+𝗌𝐞𝗅𝐞𝖼𝗍𝐞𝖽 𝖻𝗒 𝖽𝐞𝖿𝐚𝐮𝗅𝗍 𝐢𝗇 𝗍𝗁𝐞 𝖿𝐮𝗅𝗅 𝗅𝐚𝖻; 𝗍𝗁𝐞 𝗊𝐮𝐢𝖼𝗄 𝖽𝐞𝗆𝐨 𝗅𝐨𝖼𝗄𝗌 𝗍𝗁𝐢𝗌 𝗋𝐨𝐮𝗍𝐞 𝐨𝗇.
+𝐨𝗇𝐞 𝗍𝐞𝗑𝗍 𝗌𝐞𝖼𝗋𝐞𝗍 𝖼𝗋𝐨𝗌𝗌𝐞𝗌 𝖼𝐨𝗆𝖻𝐢𝗇𝐞𝖽 𝗋𝗀𝖻, 𝐨𝗋 𝗌𝐞𝗉𝐚𝗋𝐚𝗍𝐞 𝗌𝐞𝖼𝗋𝐞𝗍𝗌 𝐨𝖼𝖼𝐮𝗉𝗒 𝗋 / 𝗀 / 𝖻.
+𝗉𝗇𝗀 𝐨𝗋 𝗃𝗉𝐞𝗀 𝖼𝐚𝗇 𝗌𝐮𝗉𝗉𝗅𝗒 𝗍𝗁𝐞 𝖼𝐨𝗏𝐞𝗋 𝐢𝗆𝐚𝗀𝐞; 𝗍𝗁𝐞 𝖿𝐢𝗇𝐢𝗌𝗁𝐞𝖽 𝖼𝐚𝗋𝗋𝐢𝐞𝗋 𝐢𝗌 𝗉𝗇𝗀.
 
-The quick demo intentionally exposes only this PNG output and now locks its
-Twitter profile on. Before embedding, it redraws the cover to an opaque RGB
-canvas no larger than 680 pixels on either edge. After browser serialization,
-it removes every ancillary PNG chunk so the downloaded container matches the
-metadata-free Pillow route used by the old Streamlit build. It re-embeds after
-every size reduction until the finished PNG is at most 900 KiB. The final file
-must contain at least 257 distinct RGB colors so Twitter cannot collapse it
-into an indexed palette. The demo then reopens the actual PNG, checks the
-dimensions, size, truecolor type, opacity, and color count, and recovers the
-exact expected text. If any condition fails, it offers no download.
+𝖿𝐞𝐞𝖽 𝐚𝗋𝗆𝐨𝗋 𝗉𝐞𝗋𝖿𝐨𝗋𝗆𝗌 𝗍𝗁𝐞𝗌𝐞 𝗌𝗍𝐞𝗉𝗌:
 
-Every successful export also gets a short RGB-raster "paint mark" in its
-filename. The decoder recalculates the same mark and compares it with the last
-local export, so an older visually identical upload cannot masquerade as the
-new carrier. The current encoder remains combined RGB or individual R/G/B
-only; the decoder additionally reads legacy alpha-plane text from older demo
-artifacts.
+- 𝐚𝐮𝗍𝐨-𝐨𝗋𝐢𝐞𝗇𝗍 𝐚𝗇𝖽 𝖿𝗅𝐚𝗍𝗍𝐞𝗇 𝗍𝗁𝐞 𝖼𝐨𝗏𝐞𝗋 𝗍𝐨 𝐨𝗉𝐚𝗊𝐮𝐞 𝗋𝗀𝖻 𝖻𝐞𝖿𝐨𝗋𝐞 𝐞𝗆𝖻𝐞𝖽𝖽𝐢𝗇𝗀.
+- 𝖿𝐢𝗍 𝗍𝗁𝐞 𝗅𝐨𝗇𝗀𝐞𝗌𝗍 𝐞𝖽𝗀𝐞 𝗐𝐢𝗍𝗁𝐢𝗇 680 𝗉𝐢𝗑𝐞𝗅𝗌.
+- 𝗋𝐞𝗆𝐨𝗏𝐞 𝐚𝗇𝖼𝐢𝗅𝗅𝐚𝗋𝗒 𝗉𝗇𝗀 𝗆𝐞𝗍𝐚𝖽𝐚𝗍𝐚.
+- 𝗋𝐞-𝐞𝗆𝖻𝐞𝖽 𝐚𝖿𝗍𝐞𝗋 𝗌𝐢𝗓𝐞 𝗋𝐞𝖽𝐮𝖼𝗍𝐢𝐨𝗇𝗌 𝐮𝗇𝗍𝐢𝗅 𝗍𝗁𝐞 𝖿𝐢𝗇𝐢𝗌𝗁𝐞𝖽 𝖿𝐢𝗅𝐞 𝖿𝐢𝗍𝗌 𝗐𝐢𝗍𝗁𝐢𝗇 900 𝗄𝐢𝖻.
+- 𝗋𝐞𝗊𝐮𝐢𝗋𝐞 𝐚𝗍 𝗅𝐞𝐚𝗌𝗍 257 𝖽𝐢𝗌𝗍𝐢𝗇𝖼𝗍 𝗋𝗀𝖻 𝖼𝐨𝗅𝐨𝗋𝗌 𝐚𝗇𝖽 𝗍𝗋𝐮𝐞𝖼𝐨𝗅𝐨𝗋 𝐨𝐮𝗍𝗉𝐮𝗍.
+- 𝗋𝐞𝐨𝗉𝐞𝗇 𝗍𝗁𝐞 𝐞𝗑𝗉𝐨𝗋𝗍𝐞𝖽 𝖿𝐢𝗅𝐞 𝐚𝗇𝖽 𝖽𝐞𝖼𝐨𝖽𝐞 𝐞𝗏𝐞𝗋𝗒 𝐞𝗑𝗉𝐞𝖼𝗍𝐞𝖽 𝗉𝐚𝗒𝗅𝐨𝐚𝖽 𝖻𝗒𝗍𝐞.
 
-The 900 KiB preflight comes from Pliny's implementation. The 680-pixel ceiling
-and 257-color guard encode the original-image constraints documented by
-[tweetable-polyglot-png](https://github.com/davidbuchanan314/tweetable-polyglot-png).
-Together they keep Twitterpaint inside the lossless original-PNG path instead
-of merely hoping a locally valid file avoids recompression. JPEG conversion or
-resizing still destroys pixel LSB, so the decoder must receive Twitter's
-downloaded original—not a screenshot, preview, or transcoded copy.
+𝗍𝗁𝐞 𝗊𝐮𝐢𝖼𝗄 𝖽𝐞𝗆𝐨 𝐨𝖿𝖿𝐞𝗋𝗌 𝐚 𝖽𝐨𝗐𝗇𝗅𝐨𝐚𝖽 𝐚𝖿𝗍𝐞𝗋 𝐚𝗅𝗅 𝖼𝗁𝐞𝖼𝗄𝗌 𝗉𝐚𝗌𝗌. 𝐚 𝗌𝗁𝐨𝗋𝗍 𝗋𝐚𝗌𝗍𝐞𝗋
+𝗉𝐚𝐢𝗇𝗍 𝗆𝐚𝗋𝗄 𝐢𝗇 𝗍𝗁𝐞 𝖿𝐢𝗅𝐞𝗇𝐚𝗆𝐞 𝐢𝖽𝐞𝗇𝗍𝐢𝖿𝐢𝐞𝗌 𝗍𝗁𝐞 𝐞𝗑𝗉𝐨𝗋𝗍; 𝗍𝗁𝐞 𝖽𝐞𝖼𝐨𝖽𝐞𝗋 𝗋𝐞𝗉𝐞𝐚𝗍𝗌 𝐢𝗍
+𝐚𝗇𝖽 𝖼𝐨𝗆𝗉𝐚𝗋𝐞𝗌 𝐢𝗍 𝗐𝐢𝗍𝗁 𝗍𝗁𝐞 𝗅𝐚𝗌𝗍 𝗅𝐨𝖼𝐚𝗅 𝐞𝗑𝗉𝐨𝗋𝗍.
 
-The `nyanscence` receipt was a useful counterexample to the first diagnosis:
-X preserved its PNG raster and IDAT stream exactly while removing one EXIF
-chunk. It was the earlier alpha-plane carrier, not the newer combined-RGB
-export. Whether that came from file selection or media reuse cannot be proven
-from the receipt alone; the paint mark makes the distinction visible now.
+𝗉𝐨𝗌𝗍 𝗍𝗁𝐚𝗍 𝗉𝗇𝗀, 𝖽𝐨𝗐𝗇𝗅𝐨𝐚𝖽 𝗍𝗐𝐢𝗍𝗍𝐞𝗋’𝗌 𝐨𝗋𝐢𝗀𝐢𝗇𝐚𝗅, 𝐚𝗇𝖽 𝖽𝐞𝖼𝐨𝖽𝐞 𝐢𝗍. 𝐚 𝗌𝖼𝗋𝐞𝐞𝗇𝗌𝗁𝐨𝗍,
+𝗋𝐞𝗌𝐢𝗓𝐞𝖽 𝗉𝗋𝐞𝗏𝐢𝐞𝗐, 𝐨𝗋 𝗃𝗉𝐞𝗀 𝖼𝐨𝗇𝗏𝐞𝗋𝗌𝐢𝐨𝗇 𝖼𝗁𝐚𝗇𝗀𝐞𝗌 𝗍𝗁𝐞 𝗉𝐢𝗑𝐞𝗅𝗌 𝗍𝗁𝐚𝗍 𝖼𝐚𝗋𝗋𝗒 𝗍𝗁𝐞 𝗍𝐞𝗑𝗍.
 
-## the full-lab jpeg experiment
+## 𝗍𝗁𝐞 𝗅𝐞𝗍𝗍𝐞𝗋 𝗍𝗁𝐚𝗍 𝖼𝐚𝗆𝐞 𝖻𝐚𝖼𝗄
 
-The full Flask lab leaves JPEG selectable so its failure boundary can be
-tested. It writes quality 95 with 4:4:4 chroma, reopens the file, and reports an
-exact pass or fail without withholding the download. Quality 100, 4:4:4, and
-the Orion smoke carrier still failed in local tests. No JPEG quality setting
-can make pixel LSB a reliable JPEG scheme; JPEG changes the pixels that hold
-those bits.
+𝗍𝗁𝐞 𝗇𝗒𝐚𝗇𝗌𝖼𝐞𝗇𝖼𝐞 𝖽𝐨𝗐𝗇𝗅𝐨𝐚𝖽 𝗉𝗋𝐞𝗌𝐞𝗋𝗏𝐞𝖽 𝗍𝗁𝐞 𝗉𝗇𝗀 𝗋𝐚𝗌𝗍𝐞𝗋 𝐚𝗇𝖽 𝐢𝖽𝐚𝗍 𝗌𝗍𝗋𝐞𝐚𝗆 𝐞𝗑𝐚𝖼𝗍𝗅𝗒;
+𝗑 𝗋𝐞𝗆𝐨𝗏𝐞𝖽 𝐚𝗇 𝐞𝗑𝐢𝖿 𝖼𝗁𝐮𝗇𝗄 𝗐𝗁𝐢𝗅𝐞 𝗅𝐞𝐚𝗏𝐢𝗇𝗀 𝗍𝗁𝐞 𝗁𝐢𝖽𝖽𝐞𝗇 𝖻𝐢𝗍𝗌 𝐢𝗇𝗍𝐚𝖼𝗍. 𝗍𝗁𝐞 𝗋𝐞𝗍𝐮𝗋𝗇𝐞𝖽
+𝐢𝗆𝐚𝗀𝐞 𝖼𝐨𝗇𝗍𝐚𝐢𝗇𝐞𝖽 𝗍𝗁𝐞 𝐨𝗅𝖽𝐞𝗋 𝐚𝗅𝗉𝗁𝐚-𝗉𝗅𝐚𝗇𝐞 𝗆𝐞𝗌𝗌𝐚𝗀𝐞. 𝗍𝗁𝐞 𝗉𝐚𝐢𝗇𝗍 𝗆𝐚𝗋𝗄 𝗇𝐨𝗐 𝖽𝐢𝗌𝗍𝐢𝗇𝗀𝐮𝐢𝗌𝗁𝐞𝗌
+𝐞𝐚𝖼𝗁 𝐞𝗑𝗉𝐨𝗋𝗍 𝖿𝗋𝐨𝗆 𝐨𝗅𝖽𝐞𝗋, 𝗏𝐢𝗌𝐮𝐚𝗅𝗅𝗒 𝐢𝖽𝐞𝗇𝗍𝐢𝖼𝐚𝗅 𝖼𝐚𝗋𝗋𝐢𝐞𝗋𝗌. 𝗅𝐞𝗀𝐚𝖼𝗒 𝐚𝗅𝗉𝗁𝐚 𝗋𝐞𝗆𝐚𝐢𝗇𝗌
+𝗋𝐞𝐚𝖽𝐚𝖻𝗅𝐞 𝐢𝗇 𝗍𝗁𝐞 𝖽𝐞𝖼𝐨𝖽𝐞𝗋; 𝗇𝐞𝗐 𝐞𝗑𝗉𝐨𝗋𝗍𝗌 𝐮𝗌𝐞 𝖼𝐨𝗆𝖻𝐢𝗇𝐞𝖽 𝗋𝗀𝖻 𝐨𝗋 𝐢𝗇𝖽𝐢𝗏𝐢𝖽𝐮𝐚𝗅 𝗋 / 𝗀 / 𝖻.
 
-## the compression-tolerant option: dct + high + jpeg
+𝗍𝗁𝐞 900 𝗄𝐢𝖻 𝗉𝗋𝐞𝖿𝗅𝐢𝗀𝗁𝗍 𝖼𝐨𝗆𝐞𝗌 𝖿𝗋𝐨𝗆 𝗍𝗁𝐞 𝗌𝗍3𝗀𝗀 𝐢𝗆𝗉𝗅𝐞𝗆𝐞𝗇𝗍𝐚𝗍𝐢𝐨𝗇. 𝗍𝗁𝐞 680-𝗉𝐢𝗑𝐞𝗅
+𝖼𝐞𝐢𝗅𝐢𝗇𝗀 𝐚𝗇𝖽 257-𝖼𝐨𝗅𝐨𝗋 𝗀𝐮𝐚𝗋𝖽 𝖿𝐨𝗅𝗅𝐨𝗐 𝗍𝗁𝐞 𝐨𝗋𝐢𝗀𝐢𝗇𝐚𝗅-𝐢𝗆𝐚𝗀𝐞 𝖼𝐨𝗇𝗌𝗍𝗋𝐚𝐢𝗇𝗍𝗌 𝖽𝐨𝖼𝐮𝗆𝐞𝗇𝗍𝐞𝖽
+𝖻𝗒 [𝗍𝗐𝐞𝐞𝗍𝐚𝖻𝗅𝐞-𝗉𝐨𝗅𝗒𝗀𝗅𝐨𝗍-𝗉𝗇𝗀](https://github.com/davidbuchanan314/tweetable-polyglot-png).
+𝖿𝐞𝐞𝖽 𝐚𝗋𝗆𝐨𝗋 𝐮𝗌𝐞𝗌 𝗍𝗁𝐞 𝗅𝐨𝗌𝗌𝗅𝐞𝗌𝗌 𝐨𝗋𝐢𝗀𝐢𝗇𝐚𝗅-𝗉𝗇𝗀 𝗋𝐨𝐮𝗍𝐞; 𝐢𝗍 𝖽𝐨𝐞𝗌 𝗇𝐨𝗍 𝗋𝐞𝗅𝗒 𝐨𝗇 𝗉𝐢𝗑𝐞𝗅
+𝗅𝗌𝖻 𝗌𝐮𝗋𝗏𝐢𝗏𝐢𝗇𝗀 𝗃𝗉𝐞𝗀 𝗋𝐞𝖼𝐨𝗆𝗉𝗋𝐞𝗌𝗌𝐢𝐨𝗇.
 
-The optional frequency-domain DCT mode can encode with high robustness and
-JPEG output. Twitterpainted embeds the bitstream in lower-frequency luminance
-coefficients and keeps the final carrier below 900 KiB.
+## 𝗍𝗁𝐞 𝖿𝐮𝗅𝗅-𝗅𝐚𝖻 𝗃𝗉𝐞𝗀 𝐞𝗑𝗉𝐞𝗋𝐢𝗆𝐞𝗇𝗍
 
-The regression suite encodes and decodes this preset, then recompresses the
-JPEG at quality 75 and decodes it again. The payload survives that tested form
-of lossy JPEG recompression. It does not survive resizing: changing pixel
-dimensions changes the block grid and destroys the bitstream.
+𝗍𝗁𝐞 𝖿𝐮𝗅𝗅 𝗅𝐚𝖻 𝐚𝗅𝗌𝐨 𝐞𝗑𝗉𝐨𝗌𝐞𝗌 𝐚 𝗉𝐢𝗑𝐞𝗅-𝗅𝗌𝖻 𝗃𝗉𝐞𝗀 𝐞𝗑𝗉𝐞𝗋𝐢𝗆𝐞𝗇𝗍: 𝗊𝐮𝐚𝗅𝐢𝗍𝗒 95, 4:4:4 𝖼𝗁𝗋𝐨𝗆𝐚,
+𝐚𝗇𝖽 𝐚𝗇 𝐞𝗑𝐚𝖼𝗍 𝖽𝐞𝖼𝐨𝖽𝐞 𝖼𝗁𝐞𝖼𝗄 𝐚𝖿𝗍𝐞𝗋 𝗋𝐞𝐨𝗉𝐞𝗇𝐢𝗇𝗀. 𝗍𝗁𝐞 𝖽𝐨𝗐𝗇𝗅𝐨𝐚𝖽 𝗋𝐞𝗆𝐚𝐢𝗇𝗌 𝐚𝗏𝐚𝐢𝗅𝐚𝖻𝗅𝐞
+𝖿𝐨𝗋 𝐢𝗇𝗌𝗉𝐞𝖼𝗍𝐢𝐨𝗇 𝗐𝗁𝐞𝗇 𝗍𝗁𝐞 𝗌𝐞𝗅𝖿-𝖼𝗁𝐞𝖼𝗄 𝖿𝐚𝐢𝗅𝗌. 𝗊𝐮𝐚𝗅𝐢𝗍𝗒 100 𝐚𝗇𝖽 4:4:4 𝐚𝗅𝗌𝐨 𝖼𝗁𝐚𝗇𝗀𝐞𝖽
+𝗍𝗁𝐞 𝗉𝐚𝗒𝗅𝐨𝐚𝖽 𝖻𝐢𝗍𝗌 𝐢𝗇 𝗍𝗁𝐞 𝐨𝗋𝐢𝐨𝗇 𝗌𝗆𝐨𝗄𝐞 𝗍𝐞𝗌𝗍. 𝖼𝗁𝐨𝐨𝗌𝐞 𝗍𝗁𝐞 𝖽𝐞𝖿𝐚𝐮𝗅𝗍 𝗉𝗇𝗀 𝗋𝐨𝐮𝗍𝐞 𝖿𝐨𝗋
+𝗍𝗐𝐢𝗍𝗍𝐞𝗋𝗉𝐚𝐢𝗇𝗍; 𝗃𝗉𝐞𝗀 𝖼𝗁𝐚𝗇𝗀𝐞𝗌 𝗍𝗁𝐞 𝗉𝐢𝗑𝐞𝗅𝗌 𝐮𝗌𝐞𝖽 𝖻𝗒 𝗉𝐢𝗑𝐞𝗅 𝗅𝗌𝖻.
 
-This makes the preset JPEG-recompression-tolerant, not universally
-compression-proof. Social platforms can crop, resize, transcode, strip data,
-or change their pipelines without notice. Download the posted image and decode
-that copy before trusting the channel.
+## 𝗍𝗁𝐞 𝖿𝗋𝐞𝗊𝐮𝐞𝗇𝖼𝗒-𝖽𝐨𝗆𝐚𝐢𝗇 𝗋𝐨𝐮𝗍𝐞: 𝖽𝖼𝗍 + 𝗁𝐢𝗀𝗁 + 𝗃𝗉𝐞𝗀
 
-## what pliny's two implementations actually do
+𝗍𝗁𝐞 𝗌𝐞𝗉𝐚𝗋𝐚𝗍𝐞 𝗁𝐢𝗀𝗁-𝗋𝐨𝖻𝐮𝗌𝗍𝗇𝐞𝗌𝗌 𝖽𝖼𝗍 𝗆𝐨𝖽𝐞 𝐞𝗆𝖻𝐞𝖽𝗌 𝐢𝗇 𝗅𝐨𝗐𝐞𝗋-𝖿𝗋𝐞𝗊𝐮𝐞𝗇𝖼𝗒 𝗅𝐮𝗆𝐢𝗇𝐚𝗇𝖼𝐞
+𝖼𝐨𝐞𝖿𝖿𝐢𝖼𝐢𝐞𝗇𝗍𝗌 𝐚𝗇𝖽 𝗄𝐞𝐞𝗉𝗌 𝗍𝗁𝐞 𝖼𝐚𝗋𝗋𝐢𝐞𝗋 𝖻𝐞𝗅𝐨𝗐 900 𝗄𝐢𝖻. 𝐢𝗍𝗌 𝗋𝐞𝗀𝗋𝐞𝗌𝗌𝐢𝐨𝗇 𝐞𝗇𝖼𝐨𝖽𝐞𝗌,
+𝖽𝐞𝖼𝐨𝖽𝐞𝗌, 𝗋𝐞𝖼𝐨𝗆𝗉𝗋𝐞𝗌𝗌𝐞𝗌 𝐚𝗍 𝗃𝗉𝐞𝗀 𝗊𝐮𝐚𝗅𝐢𝗍𝗒 75, 𝐚𝗇𝖽 𝖽𝐞𝖼𝐨𝖽𝐞𝗌 𝗍𝗁𝐞 𝗌𝐚𝗆𝐞 𝗉𝐚𝗒𝗅𝐨𝐚𝖽 𝐚𝗀𝐚𝐢𝗇.
+𝗄𝐞𝐞𝗉 𝗍𝗁𝐞 𝐢𝗆𝐚𝗀𝐞 𝖽𝐢𝗆𝐞𝗇𝗌𝐢𝐨𝗇𝗌 𝐮𝗇𝖼𝗁𝐚𝗇𝗀𝐞𝖽: 𝗋𝐞𝗌𝐢𝗓𝐢𝗇𝗀 𝖼𝗁𝐚𝗇𝗀𝐞𝗌 𝗍𝗁𝐞 𝖻𝗅𝐨𝖼𝗄 𝗀𝗋𝐢𝖽.
 
-The [historical Streamlit source](https://github.com/elder-plinius/ST3GG/blob/487f6e93167407ec4a68afc80834f72556f73845/app.py)
-accepts PNG or JPEG inputs, but saves the preflight carrier as optimized PNG,
-embeds afterward, and downloads PNG. It has no pixel-LSB JPEG output path.
+𝗍𝗁𝐞𝗌𝐞 𝐚𝗋𝐞 𝖽𝐢𝗌𝗍𝐢𝗇𝖼𝗍 𝗋𝐨𝐮𝗍𝐞𝗌: 𝗍𝗐𝐢𝗍𝗍𝐞𝗋𝗉𝐚𝐢𝗇𝗍 𝗉𝗋𝐞𝗌𝐞𝗋𝗏𝐞𝗌 𝐢𝗍𝗌 𝗉𝐢𝗑𝐞𝗅 𝗉𝐚𝗒𝗅𝐨𝐚𝖽 𝗍𝗁𝗋𝐨𝐮𝗀𝗁
+𝗍𝗁𝐞 𝐨𝗋𝐢𝗀𝐢𝗇𝐚𝗅 𝗉𝗇𝗀; 𝖽𝖼𝗍 𝗍𝐨𝗅𝐞𝗋𝐚𝗍𝐞𝗌 𝗍𝗁𝐞 𝗍𝐞𝗌𝗍𝐞𝖽 𝗃𝗉𝐞𝗀 𝗋𝐞𝖼𝐨𝗆𝗉𝗋𝐞𝗌𝗌𝐢𝐨𝗇 𝗍𝗁𝗋𝐨𝐮𝗀𝗁
+𝖿𝗋𝐞𝗊𝐮𝐞𝗇𝖼𝗒-𝖽𝐨𝗆𝐚𝐢𝗇 𝐞𝗇𝖼𝐨𝖽𝐢𝗇𝗀.
 
-The [current STE.GG browser source](https://github.com/elder-plinius/ST3GG/blob/main/index.html)
-also emits ordinary LSB as PNG. Its genuine JPEG path first creates a JPEG at
-selectable quality 90, 92, 95, or 98 (95 by default), then embeds with F5 in
-JPEG coefficients. Its own UI warns that this F5 result does not survive
-social-media recompression. A separate robust DCT experiment preconditions at
-quality 85, uses stronger quantization plus five-block majority redundancy,
-and still exports PNG. Those are different formats and decoders—not special
-save settings that can rescue simple pixel LSB inside JPEG.
+## 𝐮𝗉𝗌𝗍𝗋𝐞𝐚𝗆 𝗅𝐢𝗇𝐞𝐚𝗀𝐞
 
-## provenance
+𝗍𝗁𝐞 [𝗁𝐢𝗌𝗍𝐨𝗋𝐢𝖼𝐚𝗅 𝗌𝗍𝗋𝐞𝐚𝗆𝗅𝐢𝗍 𝗌𝐨𝐮𝗋𝖼𝐞](https://github.com/elder-plinius/ST3GG/blob/487f6e93167407ec4a68afc80834f72556f73845/app.py)
+𝐚𝖼𝖼𝐞𝗉𝗍𝗌 𝗉𝗇𝗀 𝐨𝗋 𝗃𝗉𝐞𝗀 𝖼𝐨𝗏𝐞𝗋𝗌, 𝗉𝗋𝐞𝖿𝗅𝐢𝗀𝗁𝗍𝗌 𝗍𝐨 𝗉𝗇𝗀, 𝐞𝗆𝖻𝐞𝖽𝗌, 𝐚𝗇𝖽 𝖽𝐨𝗐𝗇𝗅𝐨𝐚𝖽𝗌 𝗉𝗇𝗀.
+𝗍𝗁𝐞 𝗌𝗍𝐞.𝗀𝗀 𝖻𝗋𝐨𝗐𝗌𝐞𝗋 𝗅𝐢𝗇𝐞𝐚𝗀𝐞 𝐚𝗅𝗌𝐨 𝗌𝐞𝗉𝐚𝗋𝐚𝗍𝐞𝗌 𝐨𝗋𝖽𝐢𝗇𝐚𝗋𝗒 𝗉𝗇𝗀 𝗅𝗌𝖻 𝖿𝗋𝐨𝗆 𝐢𝗍𝗌
+𝖼𝐨𝐞𝖿𝖿𝐢𝖼𝐢𝐞𝗇𝗍-𝖽𝐨𝗆𝐚𝐢𝗇 𝖿5 𝗃𝗉𝐞𝗀 𝗉𝐚𝗍𝗁. 𝗍𝗁𝐞 𝖼𝐚𝗋𝗋𝐢𝐞𝗋 𝖿𝐨𝗋𝗆𝐚𝗍 𝐚𝗇𝖽 𝖽𝐞𝖼𝐨𝖽𝐞𝗋 𝗍𝗋𝐚𝗏𝐞𝗅 𝗍𝐨𝗀𝐞𝗍𝗁𝐞𝗋.
 
-> the twitter trick was stolen from pliny because he used it to steal my heart.
+> 𝗍𝗁𝐞 𝗍𝗐𝐢𝗍𝗍𝐞𝗋 𝗍𝗋𝐢𝖼𝗄 𝗐𝐚𝗌 𝗌𝗍𝐨𝗅𝐞𝗇 𝖿𝗋𝐨𝗆 𝗉𝗅𝐢𝗇𝗒 𝖻𝐞𝖼𝐚𝐮𝗌𝐞 𝗁𝐞 𝐮𝗌𝐞𝖽 𝐢𝗍 𝗍𝐨 𝗌𝗍𝐞𝐚𝗅 𝗆𝗒 𝗁𝐞𝐚𝗋𝗍.
+> 𝗍𝗁𝐞 𝗉𝐢𝗑𝐞𝗅𝗌, 𝐚𝗍 𝗅𝐞𝐚𝗌𝗍, 𝐮𝗇𝖽𝐞𝗋𝗌𝗍𝐨𝐨𝖽 𝖼𝐨𝗆𝗆𝐢𝗍𝗆𝐞𝗇𝗍.
 
-The conversion, preflight, and original text/zlib LSB encoder family are
-modified from
-[`elder-plinius/ST3GG@487f6e9`](https://github.com/elder-plinius/ST3GG/blob/487f6e93167407ec4a68afc80834f72556f73845/app.py),
-which is AGPL-3.0. Twitterpainted preserves that license and documents the
-modifications in `NOTICE.md`.
+𝗍𝗁𝐞 𝖼𝐨𝗇𝗏𝐞𝗋𝗌𝐢𝐨𝗇, 𝗉𝗋𝐞𝖿𝗅𝐢𝗀𝗁𝗍, 𝐚𝗇𝖽 𝐨𝗋𝐢𝗀𝐢𝗇𝐚𝗅 𝗍𝐞𝗑𝗍/𝗓𝗅𝐢𝖻 𝗅𝗌𝖻 𝐞𝗇𝖼𝐨𝖽𝐞𝗋 𝖿𝐚𝗆𝐢𝗅𝗒 𝐚𝗋𝐞
+𝗆𝐨𝖽𝐢𝖿𝐢𝐞𝖽 𝖿𝗋𝐨𝗆 [𝗌𝗍3𝗀𝗀](https://github.com/elder-plinius/ST3GG/blob/487f6e93167407ec4a68afc80834f72556f73845/app.py).
+𝗍𝗐𝐢𝗍𝗍𝐞𝗋𝗉𝐚𝐢𝗇𝗍𝐞𝖽 𝗄𝐞𝐞𝗉𝗌 𝐚𝗀𝗉𝗅-3.0 𝐚𝗇𝖽 𝗍𝗁𝐞 𝗆𝐨𝖽𝐢𝖿𝐢𝖼𝐚𝗍𝐢𝐨𝗇 𝗇𝐨𝗍𝐢𝖼𝐞𝗌 𝐢𝗇 [𝗇𝐨𝗍𝐢𝖼𝐞.𝗆𝖽](../NOTICE.md).
