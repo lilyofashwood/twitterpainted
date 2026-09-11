@@ -108,11 +108,20 @@ TOOLS: Dict[str, ToolSpec] = {
 }
 
 
-def get_tool_status() -> Dict[str, Dict[str, str]]:
+# Docker currently creates success-exit echo wrappers for these names. Finding
+# those commands is not evidence of an installed, operational integration.
+# Even a user-installed real binary does not supply the missing carrier adapter.
+PLANNED_INTEGRATIONS = frozenset({
+    "mp3stego_encode", "mp3stego_decode", "openpuff", "deepsound", "sonic_visualiser",
+})
+PLANNED_REASON = "Planned integration: the bundled command is a placeholder, not an operational carrier adapter."
+
+
+def get_tool_status() -> Dict[str, Dict[str, object]]:
     """
     Return mapping of tool -> {available: bool, path: str|None}.
     """
-    status: Dict[str, Dict[str, str]] = {}
+    status: Dict[str, Dict[str, object]] = {}
     for name, spec in TOOLS.items():
         cmd = spec["cmd"]
         cmds = cmd if isinstance(cmd, list) else [cmd]
@@ -123,8 +132,12 @@ def get_tool_status() -> Dict[str, Dict[str, str]]:
                 path = found
                 break
         status[name] = {
-            "available": bool(path),
+            "available": bool(path) and name not in PLANNED_INTEGRATIONS,
             "path": path or "",
             "mode": spec.get("mode", "auto"),
+            "command_found": bool(path),
+            "classification": "planned" if name in PLANNED_INTEGRATIONS else "functional",
+            "state": "planned" if name in PLANNED_INTEGRATIONS else "available" if path else "unavailable",
+            "reason": PLANNED_REASON if name in PLANNED_INTEGRATIONS else "",
         }
     return status

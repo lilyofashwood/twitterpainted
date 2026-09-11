@@ -9,6 +9,7 @@ from typing import AbstractSet, Optional
 
 from PIL import Image
 
+from ..tooling import PLANNED_INTEGRATIONS, PLANNED_REASON
 from .utils import MAX_PENDING_TIME, update_data
 
 MAX_OUTPUT_LINES = 200
@@ -237,6 +238,9 @@ def _run_tool(
     note: Optional[str] = None,
 ) -> bool:
     if not _tool_is_selected(key):
+        return False
+    if key in PLANNED_INTEGRATIONS:
+        _record(output_dir, key, status="skipped", reason=PLANNED_REASON)
         return False
     binary = cmd[0]
     if not shutil.which(binary):
@@ -488,6 +492,9 @@ def _record_presence_probe(
     note: str,
 ) -> None:
     if not _tool_is_selected(key):
+        return
+    if key in PLANNED_INTEGRATIONS:
+        _record(output_dir, key, status="skipped", reason=PLANNED_REASON)
         return
     available_path = ""
     for cmd in commands:

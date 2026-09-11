@@ -1,7 +1,6 @@
 """Attempt to recover zlib-embedded payloads without external tools."""
 
 import base64
-import zlib
 from pathlib import Path
 from typing import Dict, List, Tuple
 
@@ -9,6 +8,7 @@ import numpy as np
 from PIL import Image
 
 from .utils import update_data
+from .bounded_zlib import decompress_deflate
 
 MAX_BYTES = 2 * 1024 * 1024  # safety cap for in-memory extraction
 
@@ -63,13 +63,11 @@ def _try_decompress(blob: bytes) -> Tuple[bytes, bool]:
     if not blob:
         return b"", False
 
-    obj = zlib.decompressobj()
     try:
-        payload = obj.decompress(blob)
-        # Accept if stream ended; unused_data is fine.
-        return (payload, obj.eof)
-    except zlib.error as e:
-        # Zlib-specific errors are expected when data is not compressed
+        # Complete bounded stream; trailing carrier data remains acceptable.
+        return decompress_deflate(blob), True
+    except ValueError:
+        # Invalid, truncated or over-limit streams are not successful hits.
         return b"", False
     except Exception as e:
         # Log unexpected errors but still return False

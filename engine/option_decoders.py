@@ -178,7 +178,9 @@ def _try_zlib(blob: bytes) -> Optional[bytes]:
     if blob[0] != 0x78:
         return None
     try:
-        return zlib.decompress(blob)
+        # Lazy import avoids a cycle through analyzers.__init__ during startup.
+        from .analyzers.bounded_zlib import bounded_deflate
+        return bounded_deflate(blob)
     except Exception:
         return None
 
@@ -1252,7 +1254,9 @@ def analyze_png_chunks(
                 key, rest = chunk_data.split(b"\x00", 1)
                 if len(rest) >= 1:
                     compressed = rest[1:]
-                    decompressed = zlib.decompress(compressed)
+                    decompressed = _try_zlib(compressed)
+                    if decompressed is None:
+                        raise ValueError("Invalid, truncated or oversized compressed PNG text")
                     extracted_text.append(
                         {
                             "keyword": key.decode("latin-1"),
@@ -1270,7 +1274,9 @@ def analyze_png_chunks(
                     comp_method = parts[2]
                     text = parts[5]
                     if comp_flag == b"\x01" and comp_method == b"\x00":
-                        text = zlib.decompress(text)
+                        text = _try_zlib(text)
+                        if text is None:
+                            raise ValueError("Invalid, truncated or oversized compressed PNG text")
                     extracted_text.append(
                         {
                             "keyword": keyword,

@@ -13,6 +13,7 @@ import numpy as np
 from PIL import Image
 
 from .utils import MAX_PENDING_TIME, update_data
+from .bounded_zlib import decompress_deflate
 
 MAGIC = b"STEG"
 HEADER_SIZE = 32
@@ -193,8 +194,8 @@ def _find_header(arr: np.ndarray) -> Tuple[Optional[Dict[str, object]], Optional
 def _maybe_decompress(data: bytes) -> Tuple[bytes, bool]:
     for wbits in (zlib.MAX_WBITS, -zlib.MAX_WBITS):
         try:
-            return zlib.decompress(data, wbits), True
-        except zlib.error:
+            return decompress_deflate(data, wbits=wbits, reject_trailing=True), True
+        except ValueError:
             continue
     return data, False
 
@@ -404,6 +405,18 @@ def analyze_stegg(input_img: Path, output_dir: Path) -> None:
     decompressed_ok = True
     if header["compressed"]:
         decompressed, decompressed_ok = _maybe_decompress(payload)
+        if not decompressed_ok:
+            update_data(
+                output_dir,
+                {
+                    "stegg": {
+                        "status": "error",
+                        "error": "Compressed STEG payload is invalid, truncated, concatenated, or exceeds the 2 MiB safety limit; no payload was exported.",
+                        "output": {"decompress_ok": False, "file": None, "archive": None},
+                    }
+                },
+            )
+            return
 
     if header["original_length"]:
         decompressed = decompressed[: int(header["original_length"])]
@@ -432,6 +445,7 @@ def analyze_stegg(input_img: Path, output_dir: Path) -> None:
         "payload_length": payload_length,
         "original_length": int(header["original_length"]),
         "crc_ok": crc_ok,
+        "verification": "crc32_match" if crc_ok else "unverified_crc_mismatch",
         "crc_expected": f"{crc_expected:08x}",
         "crc_actual": f"{crc_actual:08x}",
         "filename": filename,

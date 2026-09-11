@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import base64
-import zlib
 from pathlib import Path
 from typing import Dict, List, Tuple
 
@@ -11,6 +10,7 @@ import numpy as np
 from PIL import Image
 
 from .utils import update_data
+from .bounded_zlib import decompress_deflate
 
 MAX_BYTES = 2 * 1024 * 1024
 MAX_PREVIEW = 240
@@ -53,11 +53,13 @@ def _decode_zlib_with_length(data: bytes) -> Tuple[bytes, str]:
     length = int.from_bytes(data[:4], "big")
     if length <= 0:
         return b"", "invalid length prefix"
+    if length > MAX_BYTES:
+        return b"", "compressed payload exceeds 2 MiB limit"
     if length > len(data) - 4:
         return b"", "length exceeds available data"
     payload = data[4 : 4 + length]
     try:
-        return zlib.decompress(payload), ""
+        return decompress_deflate(payload), ""
     except Exception as exc:
         return b"", f"zlib decompress failed: {exc}"
 

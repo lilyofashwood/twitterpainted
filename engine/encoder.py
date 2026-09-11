@@ -35,6 +35,19 @@ OUTPUT_FORMATS = {
 }
 
 
+def _safe_upload_name(filename: Optional[str]) -> str:
+    """Confine either Unix- or Windows-style upload names to one basename.
+
+    Recovered veil-frame-rehab proposal, adapted to the current release.
+    Upload names are labels, never caller-authorized filesystem paths.
+    """
+    if not isinstance(filename, str):
+        return "input.png"
+    candidate = filename.replace("\\", "/").rsplit("/", 1)[-1]
+    candidate = "".join(ch for ch in candidate if ord(ch) >= 32 and ord(ch) != 127).strip()
+    return candidate if candidate not in {"", ".", ".."} else "input.png"
+
+
 def normalize_output_format(output_format: Optional[str]) -> str:
     if not output_format:
         return "png"
@@ -504,7 +517,7 @@ def encode_payload(
 
     with TemporaryDirectory() as tmp:
         tmp_dir = Path(tmp)
-        input_path = tmp_dir / filename
+        input_path = tmp_dir / _safe_upload_name(filename)
 
         try:
             with open(input_path, "wb") as f:
@@ -701,7 +714,7 @@ def encode_multi_channel(
     enforce_size_cap = prep in {"twitterpaint", "legacy"}
     with TemporaryDirectory() as tmp:
         tmp_dir = Path(tmp)
-        input_path = tmp_dir / filename
+        input_path = tmp_dir / _safe_upload_name(filename)
 
         try:
             with open(input_path, "wb") as f:

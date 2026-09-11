@@ -7,7 +7,6 @@ import binascii
 import re
 import subprocess
 import zlib
-import gzip
 import bz2
 import lzma
 from pathlib import Path
@@ -19,6 +18,7 @@ from PIL import Image
 
 from ..option_decoders import _extract_lsb_bytes, _pvd_extract_bits, _pvd_ranges, _bits_to_bytes
 from .utils import update_data
+from .bounded_zlib import bounded_deflate
 
 MAX_PAYLOAD_BYTES_LIGHT = 16384
 MAX_PAYLOAD_BYTES_DEEP = 65536
@@ -31,6 +31,8 @@ MAX_REPEAT_KEY_LEN_DEEP = 32
 MAX_REPEAT_SAMPLE_BYTES = 4096
 MAX_CRIB_OFFSETS = 128
 MAX_CRIB_OFFSETS_DEEP = 256
+MAX_DECOMPRESSED_BYTES = 2 * 1024 * 1024
+MAX_LZMA_MEMORY = 64 * 1024 * 1024
 
 PATTERNS = [b"ctf{", b"flag{", b"steg{"]
 BASE64_RE = re.compile(r"^[A-Za-z0-9+/=]+$")
@@ -275,16 +277,36 @@ def _iter_streams(img: Image.Image, deep_analysis: bool, max_bytes: int) -> Iter
             yield f"pvd {direction} {range_kind}", blob
 
 
+def _bounded_decompress(payload: bytes, name: str) -> bytes:
+    """Inspect one complete compressed stream without unbounded allocation.
+
+    Concatenated streams/trailing data are rejected, not silently presented as
+    a complete decoded wrapper. LZMA dictionary memory has a separate ceiling.
+    """
+    if len(payload) > MAX_DECOMPRESSED_BYTES:
+        raise ValueError("Compressed wrapper exceeds the 2 MiB input limit")
+    if name in {"zlib", "gzip"}:
+        return bounded_deflate(payload, wbits=31 if name == "gzip" else zlib.MAX_WBITS,
+                               max_output=MAX_DECOMPRESSED_BYTES, reject_trailing=True)
+    if name == "bz2":
+        decoder = bz2.BZ2Decompressor()
+    elif name == "lzma":
+        decoder = lzma.LZMADecompressor(memlimit=MAX_LZMA_MEMORY)
+    else:
+        raise ValueError("Unknown compression wrapper")
+    decoded = decoder.decompress(payload, max_length=MAX_DECOMPRESSED_BYTES + 1)
+    if len(decoded) > MAX_DECOMPRESSED_BYTES:
+        raise ValueError("Decompressed wrapper exceeds the 2 MiB output limit")
+    if not decoder.eof or decoder.unused_data:
+        raise ValueError("Expected one complete compressed stream without trailing data")
+    return decoded
+
+
 def _try_decompress(payload: bytes) -> List[Dict[str, Any]]:
     attempts: List[Dict[str, Any]] = []
-    for name, fn in (
-        ("zlib", zlib.decompress),
-        ("gzip", gzip.decompress),
-        ("bz2", bz2.decompress),
-        ("lzma", lzma.decompress),
-    ):
+    for name in ("zlib", "gzip", "bz2", "lzma"):
         try:
-            decoded = fn(payload)
+            decoded = _bounded_decompress(payload, name)
         except Exception:
             continue
         text, ratio = _decode_text(decoded)
@@ -545,6 +567,7 @@ def _export_payload_artifacts(
             check=True,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
+            timeout=30,
         )
         artifacts.append({"type": "archive", "name": archive_path.name})
     except Exception as exc:
